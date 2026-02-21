@@ -246,3 +246,7 @@ Then open:
 ```
 notebooks/demo.ipynb
 ```
+
+## Acknowledgments
+
+This project was developed with the assistance of ChatGPT (OpenAI) as a supplementary programming and documentation aid. The tool was used to help clarify concepts, suggest implementation approaches, and assist with debugging and code organization. All code was reviewed, modified as necessary, and validated by the author.
