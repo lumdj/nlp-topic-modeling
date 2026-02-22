@@ -2,25 +2,16 @@
 
 This project builds an end-to-end NLP pipeline using the 20 Newsgroups dataset to demonstrate:
 
-1. Multi-class text classification using TF-IDF features
-2. Multi-class classification using SentenceTransformer embeddings
-3. Semantic clustering and hierarchical topic tree generation using KMeans and LLM labeling
+- Multi-class classification using TF-IDF features
+- Classification using SentenceTransformer embeddings
+- Semantic clustering using KMeans
+- Hierarchical topic tree generation using LLM-based topic labeling
 
-The system compares sparse and dense feature representations and produces interpretable topic structures using modern NLP techniques.
-
----
-
-# Dataset
-
-Dataset: 20 Newsgroups (via scikit-learn)
-
-- 20 topic categories
-- Subsampled to 10,000 documents for performance
-- Multi-class classification problem
+The project compares traditional sparse features with modern dense embeddings and produces interpretable topic groupings.
 
 ---
 
-# Project Structure
+# Repository Structure
 
 ```
 nlp-topic-modeling/
@@ -41,35 +32,72 @@ nlp-topic-modeling/
 │   └── demo.ipynb
 │
 ├── outputs/
-│   ├── bow/
+│   ├── tfidf/
 │   ├── embeddings/
 │   ├── clustering/
 │   └── comparisons/
 │
 ├── requirements.txt
 ├── README.md
-└── ARCHITECTURE.md
+├── ARCHITECTURE.md
+└── .gitignore
 ```
 
 ---
 
-# Setup Instructions
+# Setup Instructions (Fresh Install)
 
-## 1. Create virtual environment
-
-```
-python -m venv venv
-source venv/bin/activate    # Mac/Linux
-venv\Scripts\activate       # Windows
-```
-
-## 2. Install dependencies
+## 1. Clone repository
 
 ```
+git clone <your-repo-url>
+cd nlp-topic-modeling
+```
+
+---
+
+## 2. Create virtual environment
+
+```
+python3 -m venv venv
+```
+
+Activate:
+
+Mac/Linux:
+
+```
+source venv/bin/activate
+```
+
+Windows:
+
+```
+venv\Scripts\activate
+```
+
+---
+
+## 3. Install dependencies
+
+```
+pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-## 3. Set OpenAI API key
+---
+
+## 4. Install project as package (IMPORTANT)
+
+This ensures imports work correctly everywhere:
+
+```
+pip install -e .
+```
+
+---
+
+## 5. Set OpenAI API key
 
 Create a `.env` file in the project root:
 
@@ -81,20 +109,11 @@ OPENAI_API_KEY=your_api_key_here
 
 # How to Run
 
-All commands should be run from the project root directory.
+Run all components from project root.
 
 ---
 
-# Part 1 — TF-IDF Classification
-
-Runs supervised classification using TF-IDF features and evaluates:
-
-- Multinomial Naive Bayes
-- Logistic Regression
-- Linear SVM
-- Random Forest
-
-Command:
+## Part 1 — TF-IDF Classification
 
 ```
 python -m src.tfidf_pipeline
@@ -103,21 +122,17 @@ python -m src.tfidf_pipeline
 Outputs saved to:
 
 ```
-outputs/bow/
+outputs/tfidf/
 ```
 
 Includes:
 
-- Compact confusion matrices
+- Confusion matrices
 - Classification metrics
 
 ---
 
-# Part 2 — SentenceTransformer Embedding Classification
-
-Runs classification using SentenceTransformer embeddings and the same classifiers.
-
-Command:
+## Part 2 — Embedding Classification
 
 ```
 python -m src.embedding_pipeline
@@ -129,44 +144,23 @@ Outputs saved to:
 outputs/embeddings/
 ```
 
-Includes:
-
-- Compact confusion matrices
-- Classification metrics
-
 ---
 
-# Model Comparison
-
-Compares TF-IDF and embedding classification performance.
-
-Command:
+## Model Comparison
 
 ```
 python -m src.compare_models
 ```
 
-Output saved to:
+Outputs saved to:
 
 ```
-outputs/comparisons/model_comparison.csv
+outputs/comparisons/
 ```
 
 ---
 
-# Part 3 — Topic Clustering and Topic Tree
-
-Performs semantic clustering using SentenceTransformer embeddings and KMeans.
-
-Features:
-
-- Elbow method to determine optimal cluster count
-- Top-level clustering (<10 clusters)
-- Sub-clustering of 2 largest clusters
-- LLM-generated topic labels
-- Hierarchical topic tree output
-
-Command:
+## Part 3 — Clustering and Topic Tree
 
 ```
 python -m src.clustering
@@ -180,11 +174,9 @@ outputs/clustering/
 
 Includes:
 
-```
-elbow_plot.png
-topic_tree.txt
-topic_tree.json
-```
+- Elbow plot
+- Topic tree text file
+- Hierarchical topic structure
 
 ---
 
@@ -193,46 +185,14 @@ topic_tree.json
 To view results interactively:
 
 ```
-notebooks/demo.ipynb
+jupyter notebook notebooks/demo.ipynb
 ```
 
-The notebook demonstrates:
-
-- Dataset overview
-- TF-IDF classification results
-- Embedding classification results
-- Model comparison
-- Elbow method visualization
-- Topic tree output
-
 ---
 
-# Summary of Results
+# Reproducibility (Recommended order)
 
-Key observations:
-
-- TF-IDF achieved highest classification accuracy (~71%)
-- SentenceTransformer embeddings provided strong semantic clustering
-- Linear SVM performed best overall
-- LLM labeling produced interpretable topic hierarchy
-
----
-
-# Technologies Used
-
-- Python
-- scikit-learn
-- SentenceTransformers
-- OpenAI API
-- KMeans clustering
-- Matplotlib / Seaborn
-- Jupyter Notebook
-
----
-
-# Reproducibility
-
-To fully reproduce results, run in this order:
+Run:
 
 ```
 python -m src.tfidf_pipeline
@@ -241,12 +201,21 @@ python -m src.compare_models
 python -m src.clustering
 ```
 
-Then open:
+---
 
-```
-notebooks/demo.ipynb
-```
+# Technologies Used
 
-## Acknowledgments
+- Python
+- scikit-learn
+- SentenceTransformers
+- PyTorch
+- OpenAI API
+- KMeans clustering
+- Matplotlib / Seaborn
+- Jupyter Notebook
 
-This project was developed with the assistance of ChatGPT (OpenAI) as a supplementary programming and documentation aid. The tool was used to help clarify concepts, suggest implementation approaches, and assist with debugging and code organization. All code was reviewed, modified as necessary, and validated by the author.
+---
+
+# AI Assistance Disclosure
+
+Portions of this project were developed with the assistance of ChatGPT (OpenAI) as a programming and documentation aid. All implementation decisions, testing, and validation were performed by the authors.

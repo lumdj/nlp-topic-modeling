@@ -113,7 +113,7 @@ def run_experiment():
             y_test,
             label_names,
             model_name=name,
-            subfolder="bow",
+            subfolder="tfidf",
             prefix="tfidf_"
         )
 

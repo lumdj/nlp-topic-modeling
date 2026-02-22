@@ -1,0 +1,9 @@
+[project]
+name = "nlp_topic_modeling"
+version = "0.1.0"
+description = "NLP classification and clustering pipeline"
+authors = [{name = "Your Name"}]
+dependencies = []
+
+[tool.setuptools.packages.find]
+where = ["."]
