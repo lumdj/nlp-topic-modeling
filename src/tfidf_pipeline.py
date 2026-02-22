@@ -16,13 +16,9 @@ Outputs:
 """
 
 import os
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-import json
 
 from sklearn.pipeline import Pipeline
-from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
+from sklearn.feature_extraction.text import  TfidfVectorizer
 
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.linear_model import LogisticRegression
